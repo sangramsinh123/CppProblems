@@ -94,3 +94,77 @@ else{
 
 return ans;
 */
+
+//SLIDING WINDOW APPROACH
+class Solution {
+public:
+    
+   
+    int characterReplacement(string s, int k) {
+        //acquire till (windowSize-mostFreqent <=k)
+        //release untill (windowSize-mostFreqent > k)
+        
+        int n = s.size();
+        int l=0;// left pointer of window
+        int ans = 1; 
+        int mx = 0;//max element in particular window
+        char mfc;//most frequent charracter 
+        vector<int> freq(26,0);
+        for(int r=0;r<n;r++){
+            //acquire
+            freq[s[r]-'A']++;
+            if(freq[s[r]-'A'] > mx){
+                mx = max(mx,freq[s[r]-'A']);
+                mfc = freq[s[r]-'A'];
+            }
+            
+            //int mx = *max_element(freq.begin(),freq.end());//O(26)
+            
+            while(l< r and (r-l+1-mx ) > k){
+                freq[s[l]-'A']--;
+                if(freq[s[l]-'A'] == mfc){
+                    mx--;
+                }
+                l++;
+                if(freq[s[l]-'A'] > mx){
+                    mx = max(mx,freq[s[l]-'A']);
+                    mfc = freq[s[l]-'A'];
+                }
+                
+                //not necessary but if in interview they asked about number of subarrays that satisfied this condition i.e why we need to prepare for each and every scenario
+                if((r-l+1)-mx <= k){
+                    ans = max(ans,r-l+1);
+                }
+            }
+            
+            //collect ans
+            if(r-l+1-mx<=k){
+                ans = max(ans,r-l+1);
+            }
+        }
+        
+        return ans;
+    }
+};
+
+/*
+
+At most k diff characters
+are allowed in this window
+
+TTTTTTTFFFFFFF
+
+
+if(){//true
+    ans = mid;
+    lo = mid+1;
+}
+else{
+    hi = mid-1
+}
+
+return ans;
+
+
+
+*/
