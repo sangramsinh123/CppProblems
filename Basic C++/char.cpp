@@ -5,7 +5,7 @@ using namespace std;
 int main() {
     // Write C++ code here
     // std::cout << "Hello world!";
-    cout << (char)97 << endl;
-    cout << (char)98 << endl;
+    cout << (char)97 << endl;// ouput = a
+    cout << (char)98 << endl;// ouput = b
     return 0;
 }
