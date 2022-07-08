@@ -6,7 +6,8 @@ using namespace std;
 
  // } Driver Code Ends
 // User function Template for C++
-
+//SC = O(N)
+//TC = O(N*N)
 class Solution{
   public:
     vector<int> price;
