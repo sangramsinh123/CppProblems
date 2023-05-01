@@ -1,11 +1,13 @@
 class UF{
 public:
     vector<int> size,par;
+    int sz ;
     //constructre Injection technique
     UF(int n){
+        sz = n;
         par = vector<int>(n+1);
         size = vector<int>(n+1);
-        for(int i=0;i<=n;i++){
+        for(int i=1;i<=n;i++){
             par[i] = i;
             size[i] = 1;
         }
@@ -39,5 +41,23 @@ public:
             par[pa] = pb;
             size[pb] += size[pa];
         }
+    }
+    
+    vector<int> getParArray(){
+        for(int i=1;i<=sz;i++){
+            par[i] = find(i);
+        }
+        return par;
+    }
+
+    int getSizeOfConnectedComponents(){
+        int cnt = 0;
+        for(int i=1;i<=sz;i++){
+            if(par[i] == i){
+                cnt++;
+            }
+        }
+
+        return cnt;
     }
 };
