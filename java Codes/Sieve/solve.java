@@ -1,5 +1,5 @@
 class Sieve{
-    public static void soe(int n){
+    public static void sieveOfErathosis(int n){
         boolean[] isPrime = new boolean[n+1];
         Arrays.fill(isPrime, true);
         isPrime[0] = false;
