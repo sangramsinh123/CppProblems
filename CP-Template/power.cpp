@@ -26,6 +26,26 @@ ll power(ll a, ll b){// a^b
 }
 
 
+// Binary Exponentianal
+ll BinaryExponention(ll a, ll b){	
+	if(b == 0){
+		return 1;
+	}
+
+	ll base = BinaryExponention(a,b/2);
+	ll ans = 1;
+	if(b%2 == 1){
+		ans = (base*base)%mod;
+		ans = ans*a;
+	}
+	else{
+		ans = (base*base)%mod;
+	}
+
+	return ans;
+}
+
+
 
 int main(){
 
@@ -39,6 +59,7 @@ int main(){
 	// 	t--;
 	// }
 
-	cout << power(2,4 ) << endl;
+	// cout << power(2,4 ) << endl;
+	cout << BinaryExponention(2,10 ) << endl;
 	return 0;
 }
