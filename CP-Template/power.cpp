@@ -19,7 +19,7 @@ const int mod = (int)1e9+7;
 ll power(ll a, ll b){// a^b
 	ll ans = 1;
 	for(int i = 1;i<=b;i++){
-		ans = (ans*a);
+		ans = (ans*a)%mod;
 	}
 
 	return ans;
