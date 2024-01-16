@@ -19,54 +19,40 @@ const int mod = (int)1e9+7;
  
 class Solution {
 public:
-    vector<int> getSubarrayBeauty(vector<int>& nums, int windowSize, int x) {
-        fastIO
-        int n = nums.size();
-		int l = 0;
-		int r = 0;
-		vector<int> ans;
-		vector<int> mp(51,0);
-		while(r<n){
-			if(r-l+1 == windowSize){
-				if(nums[r] < 0){
-                    mp[nums[r]*(-1)]++;
-                }
-                // cout << l << " " << r << endl;
-				// cal ans
-                int x_dash = x;
-                bool f = false;
-				for(int j = 50;j>=1;j--){
-                    if(mp[j] > 0){
-                        x_dash -= mp[j];
-                        if(x_dash <= 0){
-                            ans.pb(j*(-1));
-                            f = true;
-                            break;
-                        }
-                    }
-                }
-                if(!f){
-                    ans.pb(0);
-                }
-
-                if(nums[l] < 0){
-                    if(mp[nums[l]*(-1)] > 0){
-                        mp[nums[l]*(-1)]--;
-                    }
-                }
-
-				
-				l++;
-				r++;
-			}
-			else if(r-l+1 < windowSize){
-				if(nums[r] < 0){
-                    mp[nums[r]*(-1)]++;
-                }
+    int countGoodSubstrings(string s) {
+        int n = s.size();
+        int ws = 3;
+        int l = 0;
+        int r = 0;
+        map<int,int> mp;
+        int cnt = 0;
+        while(r<n){
+            if(r-l+1 < ws){ // Fixed Window is small
+                //STEP 1
+                mp[s[r]]++;
                 r++;
-			}
-		}
+            }
+            else if(r-l+1 == ws){// Fixed Window = Window size
+                //STEP 2
+                mp[s[r]]++;
+                
+                //STEP 3 (Answer calculation)
+                if(mp.size() == ws){
+                    cnt++;
+                }
+                //STEP 4 Remove ele from Left Ptr
+                mp[s[l]]--;
+                if(mp[s[l]] == 0){
+                    mp.erase(s[l]);
+                }
 
-		return ans;
+
+                l++;
+                r++;
+
+            }
+        }
+
+        return cnt;
     }
 };
