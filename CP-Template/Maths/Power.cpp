@@ -21,7 +21,6 @@ ll power(ll a, ll b){// a^b
 	for(int i = 1;i<=b;i++){
 		ans = (ans*a)%mod;
 	}
-
 	return ans;
 }
 
