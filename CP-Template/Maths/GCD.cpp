@@ -14,7 +14,7 @@ using namespace std;
 const int mod = (int)1e9+7;
 
 
-
+// TC : log(min(a,b))
 ll gcd(ll a, ll b){
 	if(b == 0){
 		return a;
