@@ -11,7 +11,9 @@ using namespace std;
 #define inf INT_MAX
 #define N_inf INT_MIN
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
-const int mod = (int)1e9+7;
+const int mod = (int)1e9 + 7;
+ll min(ll a, ll b) {if (a >= b) { return b; } return a; }
+ll max(ll a, ll b) { if (a >= b) { return a; } return b; }
 
 
 
