@@ -44,6 +44,30 @@ ll BinaryExponention(ll a, ll b){
 	return ans;
 }
 
+// Binary Exponentianal More Sophisticated
+ll BinExpo(ll base , ll pow, ll mod) {
+	// base Cond
+	if (pow == 0) {
+		return 1;
+	}
+	if (pow == 1) {
+		return base;
+	}
+	ll newBase = BinExpo(base, pow / 2, mod);
+	ll ans = 1;
+	if (pow % 2) {
+		ans = ((newBase % mod) * (newBase % mod)) % mod;
+		ans = ((ans % mod) * (base % mod)) % mod;
+	}
+	else {
+		ans = ((newBase % mod) * (newBase % mod)) % mod;
+	}
+
+	return ans;
+
+}
+
+
 
 
 int main(){
