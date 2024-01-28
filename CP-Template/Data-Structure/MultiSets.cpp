@@ -99,6 +99,14 @@ void Multiset(int n) {// It Internally Used Red-Black Tree
 	for (auto it : ms) {
 		cout << it << " ";
 	}
+	cout << endl;
+	cout << "First Element -> " << *(ms.begin()) << " "; // Output : 5
+	cout << endl;
+	cout << "Last Element  -> " << *(--ms.end()) << " "; // Output : 2
+	cout << endl;
+	cout << "First Element -> " <<  *(--ms.rend()) << " ";// Output : 5
+	cout << endl;
+	cout << "Last Element  -> " <<  *(ms.rbegin()) << " ";// Output : 2
 }
 
 
