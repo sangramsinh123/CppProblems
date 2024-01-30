@@ -46,7 +46,7 @@ ll BinExpo(ll base , ll pow, ll mod) {
 
 ll ModDivide(ll a, ll b , ll mod) { return (a % mod * BinExpo(b, mod - 2, mod)) % mod; }
 
-
+// ==========================================================================================================
 ll fact(ll x) {
 	ll ans = 1;
 	for (int i = 1; i <= x; i++) {
@@ -55,7 +55,7 @@ ll fact(ll x) {
 	return ans;
 }
 
-// Basic Calculation TC = 3*(max(n,r))
+// Basic Calculation TC = T*(3N)
 ll nCr(int n , int r) {
 	// Formala = numerator * Inverse(denominator)
 	ll nume = fact(n);
@@ -64,29 +64,54 @@ ll nCr(int n , int r) {
 	return ans;
 }
 
+
+// ==========================================================================================================
 // Using Precomputation to Calculate nCr
 const int N = 1e6 + 1;
-ll factors[N];
+ll factorial[N];
+ll Inverse_factorial[N];
 void Precompute(int n) {
-	factors[0] = 1;
+	factorial[0] = 1;
 	for (int i = 1; i <= n; i++) {
-		factors[i] = factors[i - 1] * i;
+		factorial[i] = ModMultiply(factorial[i - 1] , i, mod);
+	}
+
+
+	Inverse_factorial[n] = BinExpo(factorial[n], mod - 2, mod);// log(mod)
+	for (int i = n - 1; i >= 0; i--) {
+		// Inverse_factorial[i] = BinExpo(factorial[i], mod - 2, mod); // TC : N*log(mod) + T
+		Inverse_factorial[i] = ModMultiply(i + 1 , Inverse_factorial[i + 1], mod);  // TC : N+T
 	}
 }
 
+
+// TC = N + T*log(Mod) = Precomputation + T*(Mod Inverse Calculation) ,  where T = TestCases
 ll nCr(int n , int r) {
 	// Formala = numerator * Inverse(denominator)
-	ll nume = factors[n];
-	ll deno = ModMultiply(factors[r] , factors[n - r], mod);
-	ll ans =  ModDivide(nume, deno, mod);
+	ll nume = factorial[n];
+	ll deno = ModMultiply(factorial[r] , factorial[n - r], mod); // factors[r]*factors[n-r]
+	ll ans =  ModDivide(nume, deno, mod); // log(mod)
+	return ans;
+}
+
+// ==========================================================================================================
+
+// Using Inverse_factors and factors , TC = N+T = Precomputation + TestCase
+ll nCr(int n , int r) {
+	// Formala = numerator * Inverse(denominator)
+	ll ans = factorial[n];
+	ans = ModMultiply(ans , Inverse_factorial[r], mod); //ans * Inverse_factors[r]
+	ans = ModMultiply(ans , Inverse_factorial[n - r], mod); //ans * Inverse_factors[n-r]
+
 	return ans;
 }
 
 
+// ==========================================================================================================
 
 int32_t main() {
 	Precompute(N);
-	cout << nCr(12, 4) << endl;
+	cout << nCr(12, 5) << endl;
 	return 0;
 }
 
