@@ -43,6 +43,7 @@ ll BinExpo(ll base , ll pow, ll mod) {
 
 }
 
+
 ll ModDivide(ll a, ll b , ll mod) { return (a % mod * BinExpo(b, mod - 2, mod)) % mod; }
 
 
@@ -63,13 +64,31 @@ ll nCr(int n , int r) {
 	return ans;
 }
 
-// Using Seive to Calculate nCr
-// void nCr(int n, int r) {
+// Using Precomputation to Calculate nCr
+const int N = 1e6 + 1;
+ll factors[N];
+void Precompute(int n) {
+	factors[0] = 1;
+	for (int i = 1; i <= n; i++) {
+		factors[i] = factors[i - 1] * i;
+	}
+}
 
-// }
+ll nCr(int n , int r) {
+	// Formala = numerator * Inverse(denominator)
+	ll nume = factors[n];
+	ll deno = ModMultiply(factors[r] , factors[n - r], mod);
+	ll ans =  ModDivide(nume, deno, mod);
+	return ans;
+}
+
+
 
 int32_t main() {
+	Precompute(N);
 	cout << nCr(12, 4) << endl;
 	return 0;
 }
+
+
 
