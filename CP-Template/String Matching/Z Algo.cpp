@@ -61,7 +61,7 @@ vector<int> z_function(string s) {
 		// update r
 		if (i + z[i] - 1 > r) {
 			l = i;
-			r = i + z[i] - 1
+			r = i + z[i] - 1;
 		}
 	}
 	return z;
