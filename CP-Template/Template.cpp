@@ -8,6 +8,12 @@ using namespace std;
 #define pb push_back
 #define F first
 #define S second
+#define all(x) x.begin(),x.end()
+#define lli long long int
+#define vii vector<pii>
+#define fo(i,n) for(int i = 0;i<n;i++)
+#define repA(i,st,en)   for(int i=(st);i<=(en);++i)
+#define repD(i,st,en)   for(int i=(en);i>=(st);--i)
 #define inf INT_MAX
 #define N_inf INT_MIN
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
@@ -18,7 +24,6 @@ ll max(ll a, ll b) { if (a >= b) { return a; } return b; }
 ll ModAdd(ll a, ll b , ll mod) { return (a % mod + b % mod) % mod; }
 ll ModSubtract(ll a, ll b , ll mod) { return ((a % mod) - (b % mod) + mod) % mod; }
 ll ModMultiply(ll a, ll b , ll mod) { return (a % mod * b % mod) % mod; }
-// ll ModDivide(ll a, ll b , ll mod) { return (a % mod * BinExpo(b, mod - 2, mod)) % mod; }
 
 
 
@@ -46,10 +51,18 @@ ll BinExpo(ll base , ll pow, ll mod) {
 
 ll ModDivide(ll a, ll b , ll mod) { return (a % mod * BinExpo(b, mod - 2, mod)) % mod; }
 
+void solve() {
+
+}
 
 int main() {
-	cout << BinExpo(3, 1e5, 53);
-	// cout << s.size() << " ";
+	int tc;
+	cin >> tc;
+	while (tc--) {
+		solve();
+	}
 	return 0;
 }
+
+
 
