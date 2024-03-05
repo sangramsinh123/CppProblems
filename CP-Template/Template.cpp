@@ -1,6 +1,20 @@
+
+
+
+/*
+  Compete against Yourself.
+  Author - Sangramsinh
+*/
+/*
+  Credits -
+  Atcoder library - https://atcoder.github.io/ac-library/production/document_en/ (namespace atcoder)
+  Github source code of library - https://github.com/atcoder/ac-library/tree/master/atcoder
+  https://codeforces.com/contest/4/submission/150120627
+*/
+
+
 #include<bits/stdc++.h>
 using namespace std;
-
 
 #define ll long long
 #define pii pair<int,int>
@@ -9,15 +23,26 @@ using namespace std;
 #define F first
 #define S second
 #define all(x) x.begin(),x.end()
-#define lli long long int
-#define vii vector<pii>
 #define fo(i,n) for(int i = 0;i<n;i++)
 #define repA(i,st,en)   for(int i=(st);i<=(en);++i)
 #define repD(i,st,en)   for(int i=(en);i>=(st);--i)
 #define inf INT_MAX
 #define N_inf INT_MIN
 #define fastIO ios_base::sync_with_stdio(false);cin.tie(nullptr);cout.tie(nullptr);
+
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+#define endl "\n"
+
 const int mod = (int)1e9 + 7;
+
+using lli = long long int;
+using mytype = long double;
+using ii = pair<lli,lli>;
+using vii = vector<ii>;
+using vi = vector<lli>;
+
+
 ll min(ll a, ll b) { if (a >= b) { return b; } return a; }
 ll max(ll a, ll b) { if (a >= b) { return a; } return b; }
 
@@ -51,10 +76,18 @@ ll BinExpo(ll base , ll pow, ll mod) {
 
 ll ModDivide(ll a, ll b , ll mod) { return (a % mod * BinExpo(b, mod - 2, mod)) % mod; }
 
+template <class T>
+using ordered_set =  __gnu_pbds::tree<T,__gnu_pbds::null_type,less<T>,__gnu_pbds::rb_tree_tag,__gnu_pbds::tree_order_statistics_node_update>;
+// X.find_by_order(k) return kth element. 0 indexed.
+// X.order_of_key(k) returns count of elements strictly less than k.
+
+
 void solve() {
 
 }
 
+
+#ifdef LOCAL
 int main() {
 	int tc;
 	cin >> tc;
@@ -63,6 +96,6 @@ int main() {
 	}
 	return 0;
 }
-
+#endif
 
 
