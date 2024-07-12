@@ -15,23 +15,19 @@ const int mod = (int)1e9+7;
 
 
 // TC : log(min(a,b))
-ll gcd(ll a, ll b){
-	if(b == 0){
+int EuclidGcd(int a, int b) {
+	if (b == 0) {
 		return a;
 	}
-	else{
-		a = a%b;
-		if(a>=b){
+	a = a % b;
+	if (a >= b) {
 
-		}
-		else{
-			swap(a,b);
-		}
-		return gcd(a,b);
+	} else {
+		swap(a, b);
 	}
+
+	return EuclidGcd(a, b);
 }
-
-
 
 int main(){
 
