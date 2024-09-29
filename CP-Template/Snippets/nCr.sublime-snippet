@@ -1,0 +1,72 @@
+<snippet>
+	<content><![CDATA[
+
+// ==========================================================================================================
+ll fact(ll x) {
+	ll ans = 1;
+	for (int i = 1; i <= x; i++) {
+		ans = ModMultiply(ans, i, mod);
+	}
+	return ans;
+}
+
+// Basic Calculation TC = T*(3N)
+ll nCr(int n , int r) {
+	// Formala = numerator * Inverse(denominator)
+	ll nume = fact(n);
+	ll deno = ModMultiply(fact(r) , fact(n - r), mod);
+	ll ans =  ModDivide(nume, deno, mod);
+	return ans;
+}
+
+// ==========================================================================================================
+// Using Precomputation to Calculate nCr
+const int N = 1e6 + 1;
+ll factorial[N];
+ll Inverse_factorial[N];
+void Precompute(int n) {
+	factorial[0] = 1;
+	for (int i = 1; i <= n; i++) {
+		factorial[i] = ModMultiply(factorial[i - 1] , i, mod);
+	}
+
+
+	Inverse_factorial[n] = BinExpo(factorial[n], mod - 2, mod);// log(mod)
+	for (int i = n - 1; i >= 0; i--) {
+		// Inverse_factorial[i] = BinExpo(factorial[i], mod - 2, mod); // TC : N*log(mod) + T
+		Inverse_factorial[i] = ModMultiply(i + 1 , Inverse_factorial[i + 1], mod);  // TC : N+T
+	}
+}
+
+
+// TC = N + T*log(Mod) = Precomputation + T*(Mod Inverse Calculation) ,  where T = TestCases
+ll nCr(int n , int r) {
+	// Formala = numerator * Inverse(denominator)
+	ll nume = factorial[n];
+	ll deno = ModMultiply(factorial[r] , factorial[n - r], mod); // factors[r]*factors[n-r]
+	ll ans =  ModDivide(nume, deno, mod); // log(mod)
+	return ans;
+}
+
+// ==========================================================================================================
+
+// Using Inverse_factors and factors , TC = N+T = Precomputation + TestCase
+ll nCr(int n , int r) {
+	// Formala = numerator * Inverse(denominator)
+	ll ans = factorial[n];
+	ans = ModMultiply(ans , Inverse_factorial[r], mod); //ans * Inverse_factors[r]
+	ans = ModMultiply(ans , Inverse_factorial[n - r], mod); //ans * Inverse_factors[n-r]
+
+	return ans;
+}
+
+
+// ==========================================================================================================
+
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>nCr</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

@@ -1,0 +1,14 @@
+<snippet>
+	<content><![CDATA[
+class cmp {
+public:
+	bool operator() (const int &a, const int &b)  const {
+		return (a > b);
+	}
+};
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>cmp</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
