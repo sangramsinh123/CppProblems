@@ -3,6 +3,7 @@
 ll getPrefixSum(int l, int r){
     return ps[r]-(l>=1 ? ps[l-1] : 0);
 }
+
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>prefix</tabTrigger>
